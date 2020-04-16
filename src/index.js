@@ -1,26 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import { HashRouter as Router } from "react-router-dom";
-import "./style.css";
-import { AuthProvider } from "./contexts/AuthContext";
-import { StateProvider } from "./contexts/StateContext";
-import ProvideAuth from "./hooks/useAuth";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import { HashRouter as Router } from 'react-router-dom';
+import './style.css';
 
 const AppWithRouter = () => {
   return (
-    <Router>
-      <ProvideAuth>
+    <React.StrictMode>
+      <Router>
         <App />
-      </ProvideAuth>
-    </Router>
+      </Router>
+    </React.StrictMode>
   );
 };
-ReactDOM.render(
-  <StateProvider>
-    <AuthProvider>
-      <AppWithRouter />{" "}
-    </AuthProvider>
-  </StateProvider>,
-  document.getElementById("root")
-);
+
+ReactDOM.render(<AppWithRouter />, document.getElementById('root'));

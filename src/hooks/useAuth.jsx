@@ -1,6 +1,6 @@
-import React, { useState, useContext, useEffect, createContext } from "react";
-import { useHistory } from "react-router-dom";
-import { apiUtils } from "../utils/apiUtils";
+import React, { useState, useContext, useEffect, createContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { apiUtils } from '../utils/apiUtils';
 
 const authContext = createContext();
 
@@ -21,26 +21,28 @@ const useProvideAuth = () => {
   const history = useHistory();
 
   useEffect(() => {
+    setJwtToken(localStorage.getItem('jwtToken'));
     setIsLoggedIn(!!jwtToken);
   }, [jwtToken]);
 
   const signIn = async (username, password) => {
-    const options = apiUtils.makeOptions("POST", {
+    const options = apiUtils.makeOptions('POST', {
       username: username,
       password: password
     });
 
     try {
       setIsLoading(true);
-      const res = await apiUtils.fetchData("login", options);
+      const res = await apiUtils.fetchData('/login', options);
       setName(res.username);
       setJwtToken(res.token);
+      localStorage.setItem('jwtToken', res.token);
       setRoles(res.roles);
     } catch (error) {
       if (error.status) {
-        error.fullError.then(e => alert(e.message));
+        error.fullError.then((e) => alert(e.message));
       } else {
-        console.log("Network error");
+        console.log('Network error');
       }
     } finally {
       setIsLoading(false);
@@ -50,10 +52,11 @@ const useProvideAuth = () => {
   const signOut = () => {
     setName(null);
     setJwtToken(null);
-    history.push("/");
+    localStorage.removeItem('jwtToken');
+    history.push('/');
   };
 
-  const authenticateRole = role => {
+  const authenticateRole = (role) => {
     return isLoggedIn && roles.includes(role);
   };
 
@@ -61,9 +64,10 @@ const useProvideAuth = () => {
   return {
     user: {
       name,
+      roles,
       authenticateRole,
       jwtToken,
-      isAuthenticated: isLoggedIn
+      isLoggedIn: isLoggedIn
     },
     signIn,
     signOut,

@@ -1,1 +1,1 @@
-export const backendUrl = "http://localhost:8080/ca3backend";
+export const backendUrl = "https://madsbrandt.codes/jokeFetcher/api";

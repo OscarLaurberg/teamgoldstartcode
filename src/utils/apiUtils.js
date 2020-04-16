@@ -1,7 +1,7 @@
-import { backendUrl } from "./settings";
+import { backendUrl } from './settings';
 const baseURL = backendUrl;
 
-const handleHttpErrors = res => {
+const handleHttpErrors = (res) => {
   if (!res.ok) {
     return Promise.reject({ status: res.status, fullError: res.json() });
   }
@@ -12,12 +12,12 @@ const makeOptions = (method, body, token = true) => {
   const opts = {
     method: method,
     headers: {
-      "Content-type": "application/json",
-      Accept: "application/json"
+      'Content-type': 'application/json',
+      Accept: 'application/json'
     }
   };
   if (token) {
-    opts.headers["x-access-token"] = token;
+    opts.headers['x-access-token'] = token;
   }
   if (body) {
     opts.body = JSON.stringify(body);
@@ -26,7 +26,7 @@ const makeOptions = (method, body, token = true) => {
 };
 
 const fetchData = async (url, opts) => {
-  const res = await fetch(`${baseURL}/${url}`, opts);
+  const res = await fetch(`${baseURL}${url}`, opts);
   return handleHttpErrors(res);
 };
 
