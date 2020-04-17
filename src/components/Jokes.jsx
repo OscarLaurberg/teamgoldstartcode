@@ -4,9 +4,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { apiUtils } from '../utils/apiUtils';
 import useFetch from '../hooks/useFetch.jsx';
 
-export default function Scrape() {
+const Jokes = () => {
   const opts = apiUtils.makeOptions('GET');
-  const { response, isLoading } = useFetch('/scrape', opts);
+  const { response, isLoading } = useFetch('/jokes', opts);
 
   if (isLoading) {
     return (
@@ -15,19 +15,21 @@ export default function Scrape() {
       </Backdrop>
     );
   }
+
   return (
     <>
-      <h1>Scrapes</h1>
-      {response &&
-        response.map((scrape) => (
-          <div key={scrape.url}>
-            <p>URL: {scrape.url}</p>
-            <p>Title: {scrape.title}</p>
-            <p>DivCount: {scrape.divCount}</p>
-            <p>BodyCount: {scrape.bodyCount}</p>
-            <br />
-          </div>
-        ))}
+      <h1>Jokes</h1>
+      {response && (
+        <>
+          <p>Joke1: {response.joke1}</p>
+          <p>Joke1 Reference: {response.joke1Reference}</p>
+          <br />
+          <p>Joke2: {response.joke2}</p>
+          <p>Joke2 Reference: {response.joke2Reference}</p>
+        </>
+      )}
     </>
   );
-}
+};
+
+export default Jokes;

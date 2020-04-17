@@ -1,9 +1,9 @@
-const setToken = token => {
-  localStorage.setItem("jwtToken", token);
+const setToken = (token) => {
+  localStorage.setItem('jwtToken', token);
 };
 
 const getToken = () => {
-  return localStorage.getItem("jwtToken");
+  return localStorage.getItem('jwtToken');
 };
 
 // TODO - Nuke isAuthenticated and replace with this.
@@ -12,7 +12,7 @@ const loggedIn = () => {
   return isLoggedIn;
 };
 const logout = () => {
-  localStorage.removeItem("jwtToken");
+  localStorage.removeItem('jwtToken');
 };
 
 export const authUtils = {

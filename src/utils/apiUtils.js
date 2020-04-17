@@ -1,5 +1,4 @@
-import { backendUrl } from './settings';
-const baseURL = backendUrl;
+import { backendUrl } from '../config/settings';
 
 const handleHttpErrors = (res) => {
   if (!res.ok) {
@@ -8,7 +7,7 @@ const handleHttpErrors = (res) => {
   return res.json();
 };
 
-const makeOptions = (method, body, token = true) => {
+const makeOptions = (method, body = null, token = true) => {
   const opts = {
     method: method,
     headers: {
@@ -17,7 +16,7 @@ const makeOptions = (method, body, token = true) => {
     }
   };
   if (token) {
-    opts.headers['x-access-token'] = token;
+    opts.headers['x-access-token'] = localStorage.getItem('jwtToken');
   }
   if (body) {
     opts.body = JSON.stringify(body);
@@ -26,7 +25,7 @@ const makeOptions = (method, body, token = true) => {
 };
 
 const fetchData = async (url, opts) => {
-  const res = await fetch(`${baseURL}${url}`, opts);
+  const res = await fetch(`${backendUrl}${url}`, opts);
   return handleHttpErrors(res);
 };
 
