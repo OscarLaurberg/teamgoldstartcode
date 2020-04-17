@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
-import facade from "../api/apiFacade";
+import React, { useState, useEffect } from 'react';
+import facade from '../api/apiFacade';
+import { apiUtils } from '../utils/apiUtils';
 
 export default function Jokes() {
   const [jokes, setJokes] = useState({});
   useEffect(() => {
-    facade.fetchData("/api/jokes").then(json => {
+    // apiUtils.fetchData('/jokes')
+    facade.fetchData('/jokes').then((json) => {
       setJokes(json);
     });
   }, []);
