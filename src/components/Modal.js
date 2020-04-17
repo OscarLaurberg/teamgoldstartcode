@@ -1,21 +1,21 @@
-import { useEffect } from "react";
-import { createPortal } from "react-dom";
+import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
-const modalRoot = document.querySelector("#modal");
+const modalRoot = document.querySelector('#modal');
 
-const Modal = ({ children, toggleModalLogin }) => {
-  const containerDiv = document.createElement("div");
+const Modal = ({ children, hideModal }) => {
+  const containerDiv = document.createElement('div');
 
   useEffect(() => {
     modalRoot.appendChild(containerDiv);
     function keyListener(e) {
       if (e.keyCode === 27) {
-        toggleModalLogin();
+        hideModal();
       }
     }
-    document.addEventListener("keydown", keyListener);
+    document.addEventListener('keydown', keyListener);
     return () => modalRoot.removeChild(containerDiv);
-  }, [containerDiv, toggleModalLogin]);
+  }, [containerDiv, hideModal]);
 
   return createPortal(children, containerDiv);
 };

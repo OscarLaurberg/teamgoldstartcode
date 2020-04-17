@@ -1,34 +1,31 @@
-import React, { useState, useContext } from "react";
-import { Button, TextField } from "@material-ui/core";
-import facade from "../api/apiFacade";
-import { AuthContext } from "../contexts/AuthContext";
-import { useAuth } from "../hooks/useAuth";
+import React, { useState } from 'react';
+import { Button, TextField } from '@material-ui/core';
+import { useAuth } from '../hooks/useAuth.jsx';
 
-export default function LogIn({ toggleModalLogin, history }) {
+export default function LogIn({ hideModal }) {
   const {
-    user: { isAuthenticated },
+    user: { isLoggedIn },
     signIn,
     signOut
   } = useAuth();
-  const init = { username: "", password: "" };
+  const init = { username: '', password: '' };
   const [loginCredentials, setLoginCredentials] = useState(init);
 
   const handleLogout = () => {
     signOut();
-    toggleModalLogin();
+    hideModal();
   };
 
   const handleLogin = (user, pass) => {
     signIn(user, pass);
-    toggleModalLogin();
-    history.push("/");
+    hideModal();
   };
 
-  const performLogin = evt => {
+  const performLogin = (evt) => {
     evt.preventDefault();
     handleLogin(loginCredentials.username, loginCredentials.password);
   };
-  const onChange = evt => {
+  const onChange = (evt) => {
     setLoginCredentials({
       ...loginCredentials,
       [evt.target.id]: evt.target.value
@@ -37,7 +34,7 @@ export default function LogIn({ toggleModalLogin, history }) {
 
   return (
     <React.Fragment>
-      {isAuthenticated ? (
+      {isLoggedIn ? (
         <LoggedIn handleLogout={handleLogout} />
       ) : (
         <LoggedOut change={onChange} performLogin={performLogin} />
@@ -52,18 +49,18 @@ function LoggedOut({ performLogin, change }) {
       <h2>Login</h2>
       <form onChange={change}>
         <TextField
-          size="small"
-          id="username"
-          label="User Name"
-          variant="outlined"
+          size='small'
+          id='username'
+          label='User Name'
+          variant='outlined'
         />
         <TextField
-          size="small"
-          id="password"
-          label="Password"
-          variant="outlined"
+          size='small'
+          id='password'
+          label='Password'
+          variant='outlined'
         />
-        <Button variant="outlined" color="primary" onClick={performLogin}>
+        <Button variant='outlined' color='primary' onClick={performLogin}>
           Login
         </Button>
       </form>

@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, createContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { apiUtils } from '../utils/apiUtils';
+import { getUserAndRoles } from '../utils/JwtTokenParser';
 
 const authContext = createContext();
 
@@ -21,8 +22,16 @@ const useProvideAuth = () => {
   const history = useHistory();
 
   useEffect(() => {
+    // Checks logged in
     setJwtToken(localStorage.getItem('jwtToken'));
     setIsLoggedIn(!!jwtToken);
+
+    // Set roles
+    if (jwtToken) {
+      const { username, roles } = getUserAndRoles(jwtToken);
+      setName(username);
+      setRoles(roles);
+    }
   }, [jwtToken]);
 
   const signIn = async (username, password) => {
@@ -60,14 +69,14 @@ const useProvideAuth = () => {
     return isLoggedIn && roles.includes(role);
   };
 
-  // Return isAuthenticated object and auth methods
+  // Return user object and auth methods
   return {
     user: {
       name,
       roles,
       authenticateRole,
       jwtToken,
-      isLoggedIn: isLoggedIn
+      isLoggedIn
     },
     signIn,
     signOut,
