@@ -33,7 +33,7 @@ and functions to change this state;
 
 - `signIn()`
 - `signOut()`
-- `isLoading()`
+- `isLoading`
 
 #### The advanced state context (StateContext.jsx)
 
@@ -43,7 +43,7 @@ Alex
 
 _Components_
 
-- **ProtectedRoute.jsx** - This component takes a role as param and a `<Route />` as child, and ensures that the user is authorized to view the `<Route />`.
+- **ProtectedRoute.jsx** - This component takes a role as a prop and a `<Route />` as child, and ensures that the user is authorized to view the `<Route />`.
 - **Modal.jsx** - ALEX
 - **ToggleComponent.jsx** - This component takes a toggler and a component as props, and toggles visibility of the content using the toggler. This component is used to toggle modals in the app, taking a `<Button />` as the toggler.
 
