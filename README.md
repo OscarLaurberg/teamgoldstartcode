@@ -39,7 +39,7 @@ and functions to change this state;
 
 Alex
 
-#### Utility components
+#### Utilities
 
 _Components_
 
