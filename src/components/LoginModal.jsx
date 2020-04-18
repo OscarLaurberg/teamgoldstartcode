@@ -1,6 +1,6 @@
 import React from 'react';
-import ToggleContent from './ToggleContent.jsx';
-import Modal from '../components/Modal.jsx';
+import ToggleContent from './utils/ToggleContent.jsx';
+import Modal from './utils/Modal.jsx';
 import LogIn from '../components/Login.jsx';
 import { Button } from '@material-ui/core';
 import { useAuth } from '../hooks/useAuth.jsx';
