@@ -42,10 +42,12 @@ Alex
 #### Utility components
 
 _Components_
-**ProtectedRoute.jsx** - This component takes a role as param and a `<Route />` as child, and ensures that the user is authorized to view the `<Route />`.
-**Modal.jsx** - ALEX
-**ToggleComponent.jsx** - This component takes a toggler and a component as props, and toggles visibility of the content using the toggler. This component is used to toggle modals in the app, taking a `<Button />` as the toggler.
+
+- **ProtectedRoute.jsx** - This component takes a role as param and a `<Route />` as child, and ensures that the user is authorized to view the `<Route />`.
+- **Modal.jsx** - ALEX
+- **ToggleComponent.jsx** - This component takes a toggler and a component as props, and toggles visibility of the content using the toggler. This component is used to toggle modals in the app, taking a `<Button />` as the toggler.
 
 _Functions_
-**apiUtils.js** - Contains vanilla js functions to interact with backend api; makeoptions, fetch etc. Mainly used where `useFetch.jsx` wasnt possible.
-**jwtParser** - Cointains a parser that can extract username, and roles from the jwtToken.
+
+- **apiUtils.js** - Contains vanilla js functions to interact with backend api; makeoptions, fetch etc. Mainly used where `useFetch.jsx` wasnt possible.
+- **jwtParser** - Cointains a parser that can extract username, and roles from the jwtToken.
