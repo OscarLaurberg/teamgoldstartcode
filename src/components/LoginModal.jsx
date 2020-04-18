@@ -1,11 +1,11 @@
 import React from 'react';
 import ToggleContent from './ToggleContent.jsx';
-import Modal from '../components/Modal';
-import LogIn from '../components/Login';
-import { IconButton } from '@material-ui/core';
+import Modal from '../components/Modal.jsx';
+import LogIn from '../components/Login.jsx';
+import { Button } from '@material-ui/core';
 import { useAuth } from '../hooks/useAuth.jsx';
 
-const LoginModal = () => {
+const LoginModal = ({ togglerColor = 'default' }) => {
   const {
     user: { isLoggedIn }
   } = useAuth();
@@ -14,9 +14,9 @@ const LoginModal = () => {
   const loginBtn = (show) => {
     const btnTxt = isLoggedIn ? 'Logout' : 'Login';
     return (
-      <IconButton color='inherit' onClick={show}>
+      <Button variant='contained' color={togglerColor} onClick={show}>
         {btnTxt}
-      </IconButton>
+      </Button>
     );
   };
 

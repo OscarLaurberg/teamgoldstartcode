@@ -1,11 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import NoMatch from '../components/NoMatch';
-import Content3 from '../components/Content3';
-import Scrape from '../components/Scrape';
-import Jokes from '../components/Jokes';
-import Home from '../components/Home';
+import NoMatch from '../components/NoMatch.jsx';
+import Content3 from '../components/Content3.jsx';
+import Scrape from '../components/Scrape.jsx';
+import Jokes from '../components/Jokes.jsx';
+import Home from '../components/Home.jsx';
 import ProtectedRoute from '../components/routes/ProtectedRoute.jsx';
+import Unauthorized from '../components/Unauthorized.jsx';
 
 const Routes = () => {
   return (
@@ -23,6 +24,9 @@ const Routes = () => {
 
       <Route path='/content3'>
         <Content3 />
+      </Route>
+      <Route path='/unauthorized'>
+        <Unauthorized />
       </Route>
       <Route>
         <NoMatch />
