@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
-import { StateContext } from "../contexts/StateContext";
+import React, { useState, useContext } from 'react';
+import { StateContext } from '../../contexts/StateContext.jsx';
 
 export default function Content3() {
-  const emptyObject = { name: "", age: 0, email: "" };
+  const emptyObject = { name: '', age: 0, email: '' };
   const [object, setObject] = useState(emptyObject);
   const {
     stateObjects,
@@ -22,7 +22,7 @@ export default function Content3() {
     addState(object);
   };
 
-  const handleRemove = id => {
+  const handleRemove = (id) => {
     RemoveState(id);
   };
 
@@ -39,22 +39,22 @@ export default function Content3() {
       <form>
         <label>name</label>
         <input
-          id="name"
-          type="text"
+          id='name'
+          type='text'
           value={object.name}
           onChange={handleChange}
         />
         <label>age</label>
         <input
-          id="age"
-          type="Number"
+          id='age'
+          type='Number'
           value={object.age}
           onChange={handleChange}
         />
         <label>email</label>
         <input
-          id="email"
-          type="text"
+          id='email'
+          type='text'
           value={object.email}
           onChange={handleChange}
         />

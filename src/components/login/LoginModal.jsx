@@ -1,11 +1,12 @@
 import React from 'react';
-import ToggleContent from './utils/ToggleContent.jsx';
-import Modal from './utils/Modal.jsx';
-import LogIn from '../components/Login.jsx';
-import { Button } from '@material-ui/core';
-import { useAuth } from '../hooks/useAuth.jsx';
+import ToggleContent from '../utils/ToggleContent.jsx';
+import Modal from '../utils/Modal.jsx';
+import LogIn from './Login.jsx';
+import { Button } from 'semantic-ui-react';
+import { useAuth } from '../../hooks/useAuth.jsx';
+import Logout from './Logout.jsx';
 
-const LoginModal = ({ togglerColor = 'default' }) => {
+const LoginModal = () => {
   const {
     user: { isLoggedIn }
   } = useAuth();
@@ -14,7 +15,7 @@ const LoginModal = ({ togglerColor = 'default' }) => {
   const loginBtn = (show) => {
     const btnTxt = isLoggedIn ? 'Logout' : 'Login';
     return (
-      <Button variant='contained' color={togglerColor} onClick={show}>
+      <Button style={{ marginRight: '0.5em' }} onClick={show}>
         {btnTxt}
       </Button>
     );
@@ -24,7 +25,7 @@ const LoginModal = ({ togglerColor = 'default' }) => {
   const modalContent = (hide) => {
     return (
       <Modal hideModal={hide}>
-        <LogIn hideModal={hide} />
+        {isLoggedIn ? <Logout hideModal={hide} /> : <LogIn hideModal={hide} />}
       </Modal>
     );
   };

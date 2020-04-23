@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './components/Header.jsx';
-import Routes from './config/Routes.jsx';
-import { Container } from '@material-ui/core/';
+import Header from './components/header';
+import Routes from './components/routes/';
+import { Container } from 'semantic-ui-react';
 import ProvideAuth from './hooks/useAuth.jsx';
 import { StateProvider } from './contexts/StateContext.jsx';
 
@@ -10,7 +10,7 @@ function App() {
     <StateProvider>
       <ProvideAuth>
         <Header />
-        <Container maxWidth='lg'>
+        <Container>
           <Routes />
         </Container>
       </ProvideAuth>
